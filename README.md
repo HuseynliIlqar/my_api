@@ -54,17 +54,29 @@ Swagger UI: http://localhost:8080/swagger-ui.html
 2. `POST /api/auth/login` → receive `token`
 3. Add header: `Authorization: Bearer <token>` for write operations
 
-## Deploy to Render.com
+## Deploy to DigitalOcean (Droplet)
 
-1. Push to GitHub
-2. Create **Web Service** on Render → connect repo → select **Docker**
-3. Get free Redis at [Upstash](https://upstash.com)
-4. Set environment variables on Render:
-   ```
-   JWT_SECRET=your-long-secret-key
-   REDIS_HOST=your-upstash-host.upstash.io
-   REDIS_PORT=6379
-   ```
+```bash
+# 1. Create Ubuntu 22.04 Droplet on DigitalOcean, then SSH in:
+ssh root@<your-droplet-ip>
+
+# 2. Install Docker
+curl -fsSL https://get.docker.com | sh
+
+# 3. Clone the repo
+git clone https://github.com/HuseynliIlqar/my_api.git
+cd my_api
+
+# 4. Set your secret
+cp .env.example .env
+nano .env   # set JWT_SECRET to a long random string
+
+# 5. Run
+docker compose up -d --build
+```
+
+App will be available at `http://<your-droplet-ip>:8080`  
+Swagger UI: `http://<your-droplet-ip>:8080/swagger-ui.html`
 
 ## Postman Collection
 

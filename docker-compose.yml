@@ -8,7 +8,9 @@ services:
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - JWT_SECRET=localDevSecretKeyChangeThisInProduction123!
+      - JWT_SECRET=${JWT_SECRET}
+    volumes:
+      - ./data:/app
     depends_on:
       redis:
         condition: service_healthy
@@ -24,3 +26,6 @@ services:
       timeout: 3s
       retries: 5
     restart: unless-stopped
+
+volumes:
+  data:
