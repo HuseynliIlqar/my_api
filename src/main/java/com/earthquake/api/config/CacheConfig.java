@@ -23,7 +23,7 @@ public class CacheConfig {
                 .registerModule(new JavaTimeModule())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .activateDefaultTyping(
-                        new com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator.Builder()
+                        com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator.builder()
                                 .allowIfBaseType(Object.class)
                                 .build(),
                         ObjectMapper.DefaultTyping.EVERYTHING
