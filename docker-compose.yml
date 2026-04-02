@@ -10,7 +10,7 @@ services:
       - REDIS_PORT=6379
       - JWT_SECRET=${JWT_SECRET}
     volumes:
-      - ./data:/app
+      - ./data:/app/data
     depends_on:
       redis:
         condition: service_healthy
